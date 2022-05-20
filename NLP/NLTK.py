@@ -5,7 +5,8 @@ from nltk.probability import FreqDist
 
 from nltk.stem import PorterStemmer
 
-from nltk.stem import wordnet, WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
 
 from nltk import ne_chunk
 
@@ -43,6 +44,12 @@ lem = WordNetLemmatizer()
 
 lem.lemmatize('cats'), lem.lemmatize('cacti'), lem.lemmatize('geese')
 
+sents = nltk.sent_tokenize(texto)
+for i in range(len(sents)):
+    words = nltk.word_tokenize(sents[i])
+    words = [lem.lemmatize(word) for word in words if word not in set(stopwords.words('english'))]
+    sents[i] = ' '.join(words)
+
 # POS-TAGGING - Classificação gramatical 
 
 peace = """What do you mean, "I don't believe in God"? I talk to him every day."""
@@ -60,3 +67,9 @@ postags = nltk.pos_tag(jtoken)
 
 jner = ne_chunk(postags)
 jner
+
+nltk.download()
+
+
+sents = nltk.sent_tokenize(texto)
+sents
