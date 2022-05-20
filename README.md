@@ -1,2 +1,3 @@
 # Cursos
-Currently Studying: Introduction to Pytorch by Udacity
+Currently Studying: Natural Language Processing
+Ongoing: Neural Networks
