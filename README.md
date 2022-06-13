@@ -1,3 +1,3 @@
-# Cursos
-Currently Studying: Natural Language Processing
-Ongoing: Neural Networks
+# Courses
+Recently finished: SQL
+Latest Courses: Deep Learning and Natural Language Processing
