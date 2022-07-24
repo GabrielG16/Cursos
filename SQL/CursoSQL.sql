@@ -455,8 +455,34 @@ ORDER BY NUMERO ASC, NOME DESC;
 ## MUDAR O DELIMITADOR 
 
 ## AO REINICIAR A SESSÃO NO SERVIDOR DO SQL, O DELIMITER VOLTA AO PADRÃO
+/* STORAGED FUNCTIONS */
 
+# É utilizada para gerar um valor que pode ser usado em uma expressão. O valor geralmente é baeado em um ou mais parâmetros da função.
 
+CREATE FUNCTION minha_func(parametros)
+RETURNS tipo_dado
+codigo
+
+CREATE FUNCTION fn_teste(a DECIMAL(10,2), b INT)
+RETURNS INT
+ReTURN a*b;
+
+SELECT minha_func(parametros)/
+
+#As variáveis parametros das funções podem vir precedidas de IN OUT E INOUT que indica o uso que será feito da variável. 'IN' é a característica padrão. a variável é utilizada no procedure mas não é alterada para fora dele. 'OUT' A variável é setada para NULL dentro da procedure e será retornada ao fim do procedure. Altera o valor da variável de entrada
+
+DELIMITER //
+CREATE PROCEDURE teste_out(IN id INT, OUT livro VARCHAR(50))
+BEGIN
+	SELECT nome_livro
+	INTO livro
+	FROM tbl_Livro
+	WHERE ID_Livro = id;
+END//
+DELIMITER ;
+
+CALL teste_out(3, @livro);
+SELECT @livro;
 /* STORAGED PROCEDURES */
 
 # OS PROCEDIMENTOS NOMEADOS FICAM ARMAZENADOS NO BANCO DE DADOS
@@ -478,7 +504,7 @@ END$
 DELIMITER $
 CREATE PROCEDURE S_BAIRRO(P_BAIRRO VARCHAR(30))
 BEGIN
-		SELECT C.NOME, E.BAIRRO, E.ESTADO
+	SELECT C.NOME, E.BAIRRO, E.ESTADO
         FROM CLIENTE C
         INNER JOIN ENDERECO E
         ON C.IDCLIENTE = E.ID_CLIENTE
@@ -872,7 +898,7 @@ SELECT * FROM VENDEDORES;
 SELECT NOME, (JAN+FEV+MAR) AS TOTAL, (JAN+FEV+MAR)/3 AS MEDIA FROM VENDEDORES;
 
 CREATE TABLE VEND_TOTAL(
-	NOME VARCHAR(50),
+    NOME VARCHAR(50),
     JAN INT,
     FEV INT,
     MAR INT,
@@ -882,12 +908,15 @@ CREATE TABLE VEND_TOTAL(
 
 DELIMITER #
 
-CREATE PROCEDURE INSERE_DADOS()
+CREATE 
+
+
+PROCEDURE INSERE_DADOS()
 BEGIN
 
-	DECLARE FIM INT DEFAULT 0;
+    DECLARE FIM INT DEFAULT 0;
     DECLARE VAR1, VAR2, VAR3, VTOTAL, VMEDIA INT;
-	DECLARE VNOME VARCHAR(50);
+    DECLARE VNOME VARCHAR(50);
     
     DECLARE REG CURSOR FOR(
 		SELECT NOME, JAN, FEV, MAR FROM VENDEDORES
@@ -899,7 +928,7 @@ BEGIN
     
     REPEAT
     
-		FETCH REG INTO VNOME, VAR2, VAR3;
+	FETCH REG INTO VNOME,VAR1, VAR2, VAR3;
         IF NOT FIM THEN
         
 			SET VTOTAL = VAR1+VAR2+VAR3;
@@ -970,3 +999,47 @@ COPY REL_LOCADORA TO
 'PATH_DO_NOVO_CSV'
 DELIMITER ';'
 CSV HEADER;
+*/
+#Variáveis locais vem dentro dos blocos BEGIN e END. E deixam de existir fora desses blocos.
+PARA ATRIBUIR VALOR A ESSAS VARI[AVEIS, PODE-SE USAR A INSTRUÇÃO SET ou SELECT...INTO
+
+DECLARE var1 INT default 1
+DECLARE var 2 FLOAT 
+
+# A instrução DECLARE deve vir antes de qualquer outra instrução no bloco BEGIN
+
+CREATE PROCEDURE acumula(limite INT)
+(LABEL: OPCIONAL) BEGIN
+	DECLARE contador INT DEFAULT 0;
+	DECLARE SOMA INT DEFAULT 0;
+	(LABEL: OPCIONAL)loop_teste: LOOP
+		SET contador = contador + 1;
+		SET soma = soma + contador;
+		IF contador >= limite THEN
+			LEAVE loop_teste;
+		END IF;
+	END LOOP loop_teste;
+	SELECT soma;
+END //
+
+CREATE PROCEDURE acumula(limite INT)
+(LABEL: OPCIONAL) BEGIN
+	DECLARE contador INT DEFAULT 0;
+	DECLARE SOMA INT DEFAULT 0;
+	(LABEL: OPCIONAL)repeat_teste: REPEAT
+		SET contador = contador + 1;
+		SET soma = soma + contador;
+		UNTIL contador >= limite
+
+	END REPEAT repeat_test;
+	SELECT soma;
+END //
+
+WHILE contador < limite DO
+	SET contador = contador + 1;
+	SET soma = soma + contador;
+END WHIILE;
+
+ITERATE aparece apenas dentro de estruturas de LOOP, REPEAT e WHILE.]
+O iterate direciona para um novo loop da estruura de 
+ 
