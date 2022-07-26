@@ -24,5 +24,5 @@ cv.imshow('lab',lab)
 rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 cv.imshow('RGB', rgb)
 
-
+# Para converter entre diferentes espaços de cores, é necessário fazer uma conversão intermediária de volta ao formato BGR
 cv.waitKey(0)

@@ -38,4 +38,15 @@ cv.imshow('Rotated', rotated)
 
 resized = cv.resize(park, (500,500), interpolation = cv.INTER_CUBIC)
 cv.imshow('Resized', resized)
+
+
+# Flipping
+# 0 - giro vertical (sobre o eixo x)
+# 1 - giro horizontal(sobre o eixo y) 
+
+flip = cv.flip(park, 1)
+cv.imshow('Flip', flip)
+
+
+# cropping 
 cv.waitKey(0)
