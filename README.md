@@ -1,3 +1,3 @@
 # Courses
-Recently finished: SQL
-Latest Courses: Deep Learning and Natural Language Processing
+Recently finished: Deep Learning with Keras
+Latest Courses: OpenCV, ConvNetworks
