@@ -18,6 +18,8 @@ print(b.shape)
 print(g.shape)
 print(r.shape)
 
+# MERGING
+
 merged = cv.merge([b,g,r])
 cv.imshow('merged',merged)
 
@@ -27,7 +29,7 @@ green = cv.merge([blank,g,blank])
 red = cv.merge([blank,blank,r])
 cv.imshow('RED',red)
 cv.imshow('BLUE',blue)
-cv.imshow('green',green)
+cv.imshow('GREEN',green)
 
 
 cv.waitKey(0)

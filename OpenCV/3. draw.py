@@ -23,7 +23,7 @@ cv.line(blank, (0,0), (blank.shape[1]//2, blank.shape[0]//2), (255,255,255), thi
 cv.imshow('Line',blank)
 # 6. Write Text
 blank2 = np.zeros((500,500,3), dtype = 'uint8')
-cv.putText(blank2, 'Hello', (225,225), cv.FONT_HERSHEY_COMPLEX, 1.0, (0,255,0), 2)
+cv.putText(blank2, 'Hello', (0,225), cv.FONT_HERSHEY_COMPLEX, 1.0, (0,255,0), 2)
 cv.imshow('text', blank2)
 
 # img = cv.imread('imgs/cat.jpg')

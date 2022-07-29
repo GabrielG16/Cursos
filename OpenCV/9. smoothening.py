@@ -18,4 +18,9 @@ cv.imshow('Gauss', gauss)
 median = cv.medianBlur(img, 3)
 cv.imshow('median', median)
 
+#Bilateral blur
+
+bilateral = cv.bilateralFilter(img, 5, 15, 15)
+cv.imshow('bilateral',bilateral)
+
 cv.waitKey(0)

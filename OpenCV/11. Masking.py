@@ -4,12 +4,12 @@ import numpy as np
 img = cv.imread('imgs/cats.jpg')
 cv.imshow('Cats', img)
 
-blank = np.zeros(img.shape[:2], dtype = 'uint8')
+blank = np.zeros(img.shape[:2], dtype = 'uint8') # A máscara deve sempre ter as mesmas dimensões da imagem onde será aplicada
 
 mask = cv.circle(blank, (img.shape[1]//2, img.shape[0]//2), 100, 255, -1)
 cv.imshow('mask',mask)
 
 masked = cv.bitwise_and(img,img, mask=mask)
-cv.imshow('Masked',masked)
+cv.imshow('Masked',masked) 
 
 cv.waitKey(0)
